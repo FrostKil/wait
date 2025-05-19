@@ -18,6 +18,20 @@ function answer(response) {
 fetch('https://ipinfo.io/json?token=8f61dbdc04dbe0')
 .then(response => response.json())
 .then(data => {
-document.getElementById("noText").innerText = 
-     data.city + ', ' + data.region + ', ' + data.country;
+    document.getElementById("noText").innerText = 
+        data.city + ', ' + data.region + ', ' + data.country;
+
+    if (!sessionStorage.getItem("asked")) {
+        const questionElem = document.getElementById("question");
+        if (questionElem) {
+            questionElem.innerText = `Are you in ${data.country}?`;
+        }
+    }
 })
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        document.querySelectorAll("button.yes, button.no").forEach(btn => {
+            btn.classList.remove("hidden");
+        });
+    }, 1600);
+});

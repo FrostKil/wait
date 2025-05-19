@@ -93,3 +93,6 @@ p {
     color: #e0e0e0;
 }
 
+.hidden {
+    display: none;
+}
